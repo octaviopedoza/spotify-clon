@@ -1,5 +1,12 @@
-<app-sidebar></app-sidebar>
+<!-- llamamos al componente sidebar para hacer uso de el -->
+<app-sidebar></app-sidebar> 
+
+<!-- llamamos al componente de media player del modulo compartido para hacer uso de el -->
 <app-media-player></app-media-player>
+
+<!-- Div dentro del cual estamos cargando el html de los componentes de los modulos agregados dentro del HomeRouting para su uso
+dentro de la pagina home sin que se reinicien los componentes utilizados dentro del home -->
 <div class="home-wrapper">
+    <!-- Router-outlet llamado "child" para el redimencionado de las rutas de los modulos Favorites, Tracks y History-->
     <router-outlet name="child"></router-outlet>
 </div>
