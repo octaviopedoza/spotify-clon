@@ -1,1 +1,9 @@
-<p>tracks-page works!</p>
+<div class="tracks-page">
+    <!-- seccion top (reproductores pequeños)
+    como dentro ya utilizamos el decorador @Input para definir algunas variables dentro de otro comoponente en cual queremos comunicar
+  con este podemos hacer uso del atributo creado como es en este caso dataTracks, model y title a los cuales podemos pasarle datos
+  individualmente siempre usando la estructura y tipo de datos definidos con anterioridad dentro del componente que los va a compartir-->
+    <app-section-generic [dataTracks]="mockTracksList" [mode]="'small'" [title] = "'¡La mejor musica del mundo!'"></app-section-generic>
+    <!-- seccion medium (reproductores grandes) -->
+    <app-section-generic [dataTracks]="mockTracksList" [mode]="'big'" [title] = "'Lo mejor en electronica'"></app-section-generic>
+</div>
