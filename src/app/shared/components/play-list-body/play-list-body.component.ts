@@ -12,7 +12,9 @@ export class PlayListBodyComponent implements OnInit{
   constructor() {}
 
   ngOnInit(): void {
+    // Creamos una constante con destructuracion de JS llamada data y la hacemos igual a dataRaw y decimos que queremos sacar el default
     const {data}:any = (dataRaw as any).default
+    // el Array tracks que acabamos de crear arriba va a ser igual a la constante data
     this.tracks = data;
   }
 

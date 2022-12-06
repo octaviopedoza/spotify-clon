@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit{
-  
-  mainMenu: { 
-    defaultOption:Array<any>, 
-    accessLink:Array<any> 
+
+  mainMenu: {
+    defaultOption:Array<any>,
+    accessLink:Array<any>
   } = {defaultOption: [], accessLink: []}
 
   customOptions: Array<any> = []
@@ -38,11 +38,13 @@ export class SidebarComponent implements OnInit{
     this.mainMenu.accessLink = [
       {
         name: 'Crear lista',
-        icon: 'uil uil-plus-square'
+        icon: 'uil uil-plus-square',
+        router: ['/','tracks']
       },
       {
         name: 'Canciones que te gustan',
-        icon: 'uil uil-heart-medical'
+        icon: 'uil uil-heart-medical',
+        router: ['/','favorites']
       }
     ]
 

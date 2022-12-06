@@ -5,6 +5,7 @@
         <li>fecha incorporación 🍌😁</li>
         <li><i class="uil uil-clock-eight"></i></li>
     </ul>
+  <!-- ngFor que recorre el array tracks dentro del archivo "play-list-body.component.ts" -->
   <ul class="play-list-rows" *ngFor="let item of tracks">
         <li class="track-name">
           <ng-container *ngTemplateOutlet="coverSection;context:{track:item}"></ng-container>
