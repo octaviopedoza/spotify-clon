@@ -1,9 +1,9 @@
 <div class="play-list-body">
     <ul class="play-list-table-header">
         <li (click)="changeSort('name')">Nombre ❤</li>
-        <li (click)="changeSort('name')">álbum 🆗</li>
-        <li (click)="changeSort('name')">fecha incorporación 🍌😁</li>
-        <li (click)="changeSort('name')"><i class="uil uil-clock-eight"></i></li>
+        <li>álbum 🆗</li>
+        <li>fecha incorporación 🍌😁</li>
+        <li><i class="uil uil-clock-eight"></i></li>
     </ul>
 <!-- ngFor que recorre el array tracks dentro del archivo "play-list-body.component.ts" -->
   <ul class="play-list-rows" *ngFor="let item of tracks | orderList:optionSort.property:optionSort.order">
