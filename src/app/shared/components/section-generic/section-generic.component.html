@@ -1,8 +1,14 @@
 <div class="section--generic">
+  <!-- el titulo se le esta pasando de manera dinamica desde los datos compartidos dentro de "section-generic.component.ts" -->
     <h1 class="section--generic__title">{{title}}</h1>
 
     <div class="section--generic__player--zone">
+    <!-- El "mode" es una variable compartida desde el archivo .ts de este componente y hacemos uso del "ngClass" de manera condicional
+    en relacion a el valor que contenga la variable mode, si mode es igual a "small" ngClass va a aplicar la clase "card-small" y si es
+    "big" va a aplicar la clase "card-big"-->
         <ul class="player--list" [ngClass]="{'card-small':mode === 'small','card-big':mode === 'big'}">
+    <!-- Recorremos el array dataTracks definido dentro del archivo .ts de este componente y guardamos los datos dentro de la variable
+    track que es de tipo TrackModel -->
             <li *ngFor="let track of dataTracks">
               <app-card-player [mode]="mode" [track]="track"></app-card-player>
             </li>
