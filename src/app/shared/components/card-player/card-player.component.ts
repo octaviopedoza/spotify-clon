@@ -1,5 +1,4 @@
 import { TrackModel } from './../../../core/models/tracks.model';
-import { TracksModule } from './../../../modules/tracks/tracks.module';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
