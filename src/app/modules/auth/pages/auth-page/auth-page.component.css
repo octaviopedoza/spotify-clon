@@ -104,6 +104,11 @@
     background-color: var(--color-1);
 }
 
+/* clase css que sirve para validar campos input que son tocados y si al momento de evaluarlos no son correctos se pinta de rojo el borde */
 input.ng-invalid.ng-touched {
     border: solid 2px red !important
+}
+
+input.ng-valid.ng-touched {
+    border: solid 2px green !important
 }
