@@ -9,7 +9,7 @@ import { AuthService } from '@modules/auth/services/auth.service';
 })
 export class AuthPageComponent implements OnInit{
   formLogin: FormGroup = new FormGroup({});
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService){} //aqui inyectamos el servicio authService
 
   ngOnInit(): void {
     this.formLogin = new FormGroup(
