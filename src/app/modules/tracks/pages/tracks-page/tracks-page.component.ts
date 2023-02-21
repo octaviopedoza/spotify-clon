@@ -18,11 +18,15 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private trackService: TrackService) {} //Inyectamos el servicio de TrackService con alias trackService
 
   ngOnInit(): void {
-    this.trackService.getAllTracks$()
-    .subscribe((response: TrackModel[]) => { 
-      this.tracksTrending = response
-    })
+    this.loadDataAll()
+    this.loadDataRandom()
+  }
 
+  async loadDataAll(): Promise<any>{ //Manejando como promesa el resultado de la respuesta del API
+    const dataRaw = await this.trackService.getAllTracks$().toPromise()
+  }
+
+  loadDataRandom(): void{ //Manejandolo como suscribe el resultado de la respuesta del API
     this.trackService.getRandomTracks$()
     .subscribe((response: TrackModel[]) => { 
       this.tracksRandom = response
