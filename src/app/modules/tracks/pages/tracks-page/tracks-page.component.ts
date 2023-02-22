@@ -22,8 +22,11 @@ export class TracksPageComponent implements OnInit, OnDestroy {
     this.loadDataRandom()
   }
 
-  async loadDataAll(): Promise<any>{ //Manejando como promesa el resultado de la respuesta del API
-    const dataRaw = await this.trackService.getAllTracks$().toPromise()
+  loadDataAll(): void{ 
+    this.trackService.getAllTracks$()
+    .subscribe((response: TrackModel[]) => {
+      this.tracksTrending = response
+    })
   }
 
   loadDataRandom(): void{ //Manejandolo como suscribe el resultado de la respuesta del API

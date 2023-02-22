@@ -21,7 +21,7 @@ export class TrackService {
 
   getRandomTracks$():Observable<any>{ //funcion Observable que obtiene todas las canciones del api y retorna un valor de tipo any
     return this.httpClient.get(`${this.URL}/tracks`)
-    .pipe( tap(({ data }: any) => {
+    .pipe( map(({ data }: any) => {
       return data.reverse()
     }),
     catchError((err) => { //cacheo de error al consultar API Rest dentro de toda la aplicación
@@ -29,6 +29,7 @@ export class TrackService {
       console.log('Algo paso, necesitas revisar',[status, statusText] )
       return of([])
     })
+
     )
   }
 

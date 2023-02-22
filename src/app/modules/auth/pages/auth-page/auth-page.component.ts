@@ -8,6 +8,7 @@ import { AuthService } from '@modules/auth/services/auth.service';
   styleUrls: ['./auth-page.component.css']
 })
 export class AuthPageComponent implements OnInit{
+  errorSession: boolean = false
   formLogin: FormGroup = new FormGroup({});
   constructor(private authService: AuthService){} //aqui inyectamos el servicio authService
 
@@ -31,7 +32,11 @@ export class AuthPageComponent implements OnInit{
 // funcion que captura los datos que se envian desde el formulario de login
   sendLogin(): void{
     const {email, password} = this.formLogin.value //igualamos las constantes a los valores que tiene email y password dentro de value
-    console.log("funcion sendlogin", email,password);
-    this.authService.sendCredentials(email,password)
+    this.authService.sendCredentials(email,password).subscribe(responseOk => { //Entra cuando las credenciales son correctas
+      console.log("Sessión iniciada correcta")
+    }, err => { //Entran todos los errores 
+      this.errorSession = true //cambiamos el valor a true para que se muestre el mensaje de error dentro del html
+      console.log("Error con email o password")
+    })
   }
 }
