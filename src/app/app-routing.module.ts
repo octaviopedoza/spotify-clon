@@ -1,3 +1,4 @@
+import { SessionGuard } from './core/guards/session.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from '@modules/home/pages/home-page/home-page.component';
@@ -7,8 +8,9 @@ const routes: Routes = [
   {path:'auth', loadChildren: () => import ('./modules/auth/auth.module').then(m => m.AuthModule)},
 
   // ruta asociada al componente HomePageComponent para utilizar como pagina principal, cargando de forma peresosa el Homemodule
-  {path:'', component: HomePageComponent,
-  loadChildren: () => import ('./modules/home/home.module').then(m => m.HomeModule)}
+  {path:'', component: HomePageComponent, // Esta ruta es privada
+  loadChildren: () => import ('./modules/home/home.module').then(m => m.HomeModule),
+  canActivate:[SessionGuard] } //Agregamos el session guard para restringir la ruta
 ];
 
 @NgModule({
