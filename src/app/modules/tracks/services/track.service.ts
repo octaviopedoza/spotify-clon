@@ -1,5 +1,5 @@
 import { environment } from './../../../../env/environment'; //Archivo environment de donde tomaremos la direccion de la api
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, catchError, tap } from 'rxjs';
 
