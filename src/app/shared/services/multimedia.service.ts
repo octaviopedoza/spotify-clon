@@ -94,4 +94,12 @@ export class MultimediaService {
     (this.audio.paused) ? this.audio.play() : this.audio.pause() //metodos html
   }
 
+  public seekAudio(percentage:number): void{
+    const {duration} = this.audio
+    console.log(`Duracion: ${duration}, Porcentaje: ${percentage}`);
+    const percentageToSecond = (percentage * duration) / 100
+    console.log(percentageToSecond);
+    this.audio.currentTime = percentageToSecond
+  }
+
 }
