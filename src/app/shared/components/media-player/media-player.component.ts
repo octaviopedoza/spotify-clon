@@ -11,11 +11,14 @@ import { Subscription, Observable } from 'rxjs'; //programacion reactiva
 export class MediaPlayerComponent implements OnInit, OnDestroy{
 
   listObservers$: Array<Subscription> = [] //array de observadores de tipo Subscription
+  state:string = 'paused'
 
   constructor(public multimediaService:MultimediaService) {} //inyectamos el servico MultimediaService con el slias multimediaService
 
   ngOnInit(): void {
-    
+    const observer1$ = this.multimediaService.playerStatus$
+    .subscribe(status => this.state = status)
+    this.listObservers$ = [observer1$]
   }
 
   ngOnDestroy(): void {

@@ -13,6 +13,7 @@ export class MultimediaService {
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined)
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00')
   public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00')
+  public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused')
 
   constructor() {
     this.audio = new Audio()
@@ -27,6 +28,28 @@ export class MultimediaService {
   // Funciones Privadas
   private listenAllEvents(): void{
     this.audio.addEventListener('timeupdate', this.calculeTime, false)
+    this.audio.addEventListener('playing', this.setPlayerStatus, false)
+    this.audio.addEventListener('play', this.setPlayerStatus, false)
+    this.audio.addEventListener('pause', this.setPlayerStatus, false)
+    this.audio.addEventListener('ended', this.setPlayerStatus, false)
+  }
+
+  private setPlayerStatus = (state: any) => {
+    console.log("Status de cancion",state);
+    switch(state.type){
+      case 'play':
+        this.playerStatus$.next('play')
+        break;
+      case 'playing':
+        this.playerStatus$.next('playing')
+        break;
+      case 'ended':
+        this.playerStatus$.next('ended')
+        break;
+      default:
+        this.playerStatus$.next('pause')
+        break;
+    }
   }
 
   private calculeTime = () => {
@@ -62,6 +85,10 @@ export class MultimediaService {
     console.log("Respuesta desde multimediaService",track);
     this.audio.src = track.url
     this.audio.play()
+  }
+
+  public togglePlayer(): void{
+    (this.audio.paused) ? this.audio.play() : this.audio.pause() //metodos html
   }
 
 }
