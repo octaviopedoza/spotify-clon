@@ -14,6 +14,7 @@ export class MultimediaService {
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00')
   public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00')
   public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused')
+  public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0)
 
   constructor() {
     this.audio = new Audio()
@@ -35,7 +36,6 @@ export class MultimediaService {
   }
 
   private setPlayerStatus = (state: any) => {
-    console.log("Status de cancion",state);
     switch(state.type){
       case 'play':
         this.playerStatus$.next('play')
@@ -53,11 +53,10 @@ export class MultimediaService {
   }
 
   private calculeTime = () => {
-    console.log("disparando evento listener")
     const { duration, currentTime } = this.audio
-    console.table([duration, currentTime])
     this.setTimeElapsed(currentTime)
     this.setRemainin(currentTime, duration)
+    this.setPercentage(currentTime, duration)
   }
 
   private setTimeElapsed(currentTime:number): void{
@@ -80,9 +79,13 @@ export class MultimediaService {
     this.timeRemaining$.next(displayFormat)
   }
 
+  private setPercentage(currentTime: number, duration: number): void{
+    let percentage = (currentTime *100) / duration;
+    this.playerPercentage$.next(percentage)
+  }
+
   // Funciones Publicas ----------------------------------------------------------------------------->
   public setAudio(track:TrackModel): void{
-    console.log("Respuesta desde multimediaService",track);
     this.audio.src = track.url
     this.audio.play()
   }
