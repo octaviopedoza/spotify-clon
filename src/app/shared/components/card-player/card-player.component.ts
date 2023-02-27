@@ -18,9 +18,9 @@ export class CardPlayerComponent implements OnInit{
   }
 
   sendPlay(track: TrackModel):void{ //indicamos que vamos a recibir un track del TrackModel
-    console.log("enviando cancion al reproductor",track)
-    this.multimediaService.callback.emit(track) //del servicio multimediaService llamamos a la variable callback y le decimos que es de tipo emit y va a emitir nuestra variable track de mas arriba
-
+    // console.log("enviando cancion al reproductor",track)
+    // this.multimediaService.callback.emit(track) //del servicio multimediaService llamamos a la variable callback y le decimos que es de tipo emit y va a emitir nuestra variable track de mas arriba
+    this.multimediaService.trackInfo$.next(track)
   }
 
 }
